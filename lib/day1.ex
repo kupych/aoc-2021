@@ -15,14 +15,11 @@ defmodule Aoc.Day1 do
   end
 
   @impl Day
-  def b(first) do
-    [_ | second] = first
-    [_ | third] = second
-
-      [first, second, third]
-      |> Enum.zip_with(& &1)
-      |> Enum.map(&Enum.sum/1)
-      |> number_of_increases()
+  def b(depths) do
+    depths
+    |> Enum.chunk_every(3, 1, :discard)
+    |> Enum.map(&Enum.sum/1)
+    |> number_of_increases()
   end
 
   @impl Day
@@ -41,12 +38,9 @@ defmodule Aoc.Day1 do
   previous value.
   """
   def number_of_increases([_ | _] = values) do
-    prev_values = [nil | values]
-
     values
-    |> Enum.zip(prev_values)
-    |> Enum.map(fn
-      {current, nil} -> current
-      {current, prev} -> current - prev end)
+    |> Enum.chunk_every(2, 1, :discard)
+    |> Enum.map(fn [a, b] -> b - a end)
     |> Enum.count(fn diff -> diff > 0 end)
+  end
 end
