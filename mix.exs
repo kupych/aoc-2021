@@ -4,7 +4,7 @@ defmodule Aoc.MixProject do
   def project do
     [
       app: :aoc,
-      version: "0.1.0",
+      version: "2021",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
