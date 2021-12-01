@@ -24,3 +24,5 @@ aoc_2020-*.tar
 
 # Ignore input files
 /files/*
+
+.tool-versions
