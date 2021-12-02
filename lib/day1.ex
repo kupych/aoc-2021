@@ -40,7 +40,6 @@ defmodule Aoc.Day1 do
   def number_of_increases([_ | _] = values) do
     values
     |> Enum.chunk_every(2, 1, :discard)
-    |> Enum.map(fn [a, b] -> b - a end)
-    |> Enum.count(fn diff -> diff > 0 end)
+    |> Enum.count(fn [a, b] -> b > a end)
   end
 end

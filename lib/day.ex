@@ -41,7 +41,7 @@ defmodule Aoc.Day do
   """
   def solve(module) do
     data = module.parse_input()
-    IO.puts("The solution to #{module.day}a is: #{module.a(data)}")
-    IO.puts("The solution to #{module.day}b is: #{module.b(data)}")
+    IO.puts("The solution to #{module.day()}a is: #{module.a(data)}")
+    IO.puts("The solution to #{module.day()}b is: #{module.b(data)}")
   end
 end
