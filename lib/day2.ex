@@ -29,32 +29,32 @@ defmodule Aoc.Day2 do
     with {:ok, file} <- Day.load(__MODULE__) do
       file
       |> String.split(~r/\s/, trim: true)
-      |> Enum.chunk(2)
+      |> Enum.chunk_every(2)
       |> Enum.map(fn [command, value] -> {command, String.to_integer(value)} end)
     end
   end
 
-  defp parse_instruction({"forward", value}, [x, z]) do
-    [x + value, z]
+  defp parse_instruction({"forward", value}, [x, y]) do
+    [x + value, y]
   end
 
-  defp parse_instruction({"up", value}, [x, z]) do
-    [x, z - value]
+  defp parse_instruction({"up", value}, [x, y]) do
+    [x, y - value]
   end
 
-  defp parse_instruction({"down", value}, [x, z]) do
-    [x, z + value]
+  defp parse_instruction({"down", value}, [x, y]) do
+    [x, y + value]
   end
 
-  defp parse_instruction({"forward", value}, [aim, x, z]) do
-    [aim, x + value, z + value * aim]
+  defp parse_instruction({"forward", value}, [aim, x, y]) do
+    [aim, x + value, y + value * aim]
   end
 
-  defp parse_instruction({"up", value}, [aim, x, z]) do
-    [aim - value, x, z]
+  defp parse_instruction({"up", value}, [aim, x, y]) do
+    [aim - value, x, y]
   end
 
-  defp parse_instruction({"down", value}, [aim, x, z]) do
-    [aim + value, x, z]
+  defp parse_instruction({"down", value}, [aim, x, y]) do
+    [aim + value, x, y]
   end
 end
