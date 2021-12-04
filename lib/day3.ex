@@ -4,7 +4,7 @@ defmodule Aoc.Day3 do
   """
   @behaviour Aoc.Day
 
-  alias Aoc.Day
+  alias Aoc.{Day, Utilities}
 
   @impl Day
   def day(), do: 3
@@ -40,12 +40,6 @@ defmodule Aoc.Day3 do
     end
   end
 
-  defp transpose(r) do
-    r
-    |> List.zip()
-    |> Enum.map(&Tuple.to_list/1)
-  end
-
   defp get_max(%{} = values) do
     values
     |> Enum.max_by(&elem(&1, 1))
@@ -75,7 +69,7 @@ defmodule Aoc.Day3 do
   defp get_gamma_and_epsilon(bits) do
     gamma =
       bits
-      |> transpose()
+      |> Utilities.transpose()
       |> Enum.map(&Enum.frequencies/1)
       |> Enum.map(&get_max/1)
       |> Enum.join()
