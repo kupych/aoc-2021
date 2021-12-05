@@ -1,38 +1,3 @@
-defmodule Aoc.Bingo do
-  @moduledoc """
-  A struct for the bingo game in 2021 Day 4.
-  """
-  alias Aoc.Bingo.{Cell, Card}
-
-  def call(%{numbers: []}, _) do
-    :no_winning_cards
-  end
-
-  def call(%{cards: cards, numbers: [number | numbers]}, strategy) do
-    cards = Enum.map(cards, &Card.mark(&1, number))
-
-    case check_cards(cards, strategy) do
-      {%Card{} = card, _} ->
-        Card.score(card) * number
-
-      {nil, cards} ->
-        call(%{cards: cards, numbers: numbers}, strategy)
-    end
-  end
-
-  def check_cards(cards, :win) do
-    {Enum.find(cards, &Card.winning?/1), cards}
-  end
-
-  def check_cards([_] = cards, :lose) do
-    {Enum.find(cards, &Card.winning?/1), cards}
-  end
-
-  def check_cards([_ | _] = cards, :lose) do
-    {nil, Enum.reject(cards, &Card.winning?/1)}
-  end
-end
-
 defmodule Aoc.Bingo.Card do
   @moduledoc """
   A struct for the bingo cards in 2021 Day 4.
@@ -103,3 +68,39 @@ defmodule Aoc.Bingo.Cell do
     Map.put(cell, :marked?, true)
   end
 end
+
+defmodule Aoc.Bingo do
+  @moduledoc """
+  A struct for the bingo game in 2021 Day 4.
+  """
+  alias Aoc.Bingo.Card
+
+  def call(%{numbers: []}, _) do
+    :no_winning_cards
+  end
+
+  def call(%{cards: cards, numbers: [number | numbers]}, strategy) do
+    cards = Enum.map(cards, &Card.mark(&1, number))
+
+    case check_cards(cards, strategy) do
+      {%Card{} = card, _} ->
+        Card.score(card) * number
+
+      {nil, cards} ->
+        call(%{cards: cards, numbers: numbers}, strategy)
+    end
+  end
+
+  def check_cards(cards, :win) do
+    {Enum.find(cards, &Card.winning?/1), cards}
+  end
+
+  def check_cards([_] = cards, :lose) do
+    {Enum.find(cards, &Card.winning?/1), cards}
+  end
+
+  def check_cards([_ | _] = cards, :lose) do
+    {nil, Enum.reject(cards, &Card.winning?/1)}
+  end
+end
+
