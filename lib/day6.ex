@@ -63,7 +63,7 @@ defmodule Aoc.Day6 do
       3 => four,
       4 => five,
       5 => six,
-      6 => zero + seven,
+      6 => zero + seven, //aging fish + restarting age countdown
       7 => eight,
       8 => zero
     }
