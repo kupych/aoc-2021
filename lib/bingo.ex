@@ -103,4 +103,3 @@ defmodule Aoc.Bingo do
     {nil, Enum.reject(cards, &Card.winning?/1)}
   end
 end
-

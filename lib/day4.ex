@@ -25,7 +25,7 @@ defmodule Aoc.Day4 do
     with {:ok, file} <- Day.load(__MODULE__) do
       [numbers | cards] = String.split(file, "\n\n", trim: true)
 
-      numbers = 
+      numbers =
         numbers
         |> String.split(",", trim: true)
         |> Enum.map(&String.to_integer/1)

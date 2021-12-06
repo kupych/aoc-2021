@@ -52,8 +52,8 @@ defmodule Aoc.Day5 do
     Enum.zip(xrange, ylist)
   end
 
-  def calculate_line([xa, ya, xb, yb]) when abs(xa-xb) == abs(ya-yb) do
-      Enum.zip(xa..xb, ya..yb)
+  def calculate_line([xa, ya, xb, yb]) when abs(xa - xb) == abs(ya - yb) do
+    Enum.zip(xa..xb, ya..yb)
   end
 
   def calculate_line(_) do

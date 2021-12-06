@@ -20,7 +20,7 @@ defmodule Aoc.Day2 do
   def b(instructions) do
     instructions
     |> Enum.reduce([0, 0, 0], &parse_instruction/2)
-    |> tl() 
+    |> tl()
     |> Enum.product()
   end
 
