@@ -6,7 +6,6 @@ defmodule Aoc.Day6 do
 
   alias Aoc.Day
 
-  @new_fish_age 8
   @impl Day
   def day(), do: 6
 
