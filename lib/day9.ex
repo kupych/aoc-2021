@@ -4,7 +4,7 @@ defmodule Aoc.Day9 do
   """
   @behaviour Aoc.Day
 
-  alias Aoc.Day
+  alias Aoc.{Day, Utilities}
 
   @impl Day
   def day(), do: 9
@@ -34,7 +34,7 @@ defmodule Aoc.Day9 do
     with {:ok, file} <- Day.load(__MODULE__) do
       file
       |> String.split("\n", trim: true)
-      |> Enum.map(&binary_to_digits/1)
+      |> Enum.map(&Utilities.binary_to_digits/1)
       |> List.to_tuple()
     end
   end
@@ -73,19 +73,6 @@ defmodule Aoc.Day9 do
 
   def neighbours({x, y}) do
     [{x, y - 1}, {x, y + 1}, {x - 1, y}, {x + 1, y}]
-  end
-
-  def outside_bounds({-1, _}, _, _), do: true
-  def outside_bounds({_, -1}, _, _), do: true
-  def outside_bounds({x, _}, max_x, _) when x > max_x, do: true
-  def outside_bounds({_, y}, _, max_y) when y > max_y, do: true
-  def outside_bounds(_, _, _), do: false
-
-  def binary_to_digits(string) do
-    string
-    |> String.codepoints()
-    |> Enum.map(&String.to_integer/1)
-    |> List.to_tuple()
   end
 
   # Instead of worrying about checking for overflowing the bounds of

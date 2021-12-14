@@ -12,4 +12,21 @@ defmodule Aoc.Utilities do
     |> List.zip()
     |> Enum.map(&Tuple.to_list/1)
   end
+
+  @doc """
+  `binary_to_digits/1` takes a string of 
+  numbers and converts it to a tuple of
+  integers representing the digits.
+  """
+  def binary_to_digits(string) do
+    string
+    |> binary_to_digit_enum()
+    |> List.to_tuple()
+  end
+
+  def binary_to_digit_enum(string) do
+    string
+    |> String.codepoints()
+    |> Enum.map(&String.to_integer/1)
+  end
 end
