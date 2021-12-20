@@ -89,7 +89,7 @@ defmodule Aoc.Day13 do
     for y <- 0..max_y do
       for x <- 0..max_x do
         if Enum.member?(pixels, {x, y}) do
-          "X"
+          "█"
         else
           " "
         end
